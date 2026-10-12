@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual y Guía de Agent Skills (SKILL.md)</title>
+    <meta name="description" content="Guía interactiva SPA para entender, crear y mantener Agent Skills con tecnologías web nativas.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="brand">
+                <div class="brand-icon">SK</div>
+                <div class="brand-text">
+                    <h1>Agent Skills</h1>
+                    <span>Manual HTML5 & SKILL.md</span>
+                </div>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Buscar en el manual...">
+            </div>
+
+            <!-- Reading Progress -->
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span>Progreso del Manual</span>
+                    <span id="progress-val">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="progress-fill" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <div class="nav-group-title">Introducción</div>
+                <a class="nav-item active" data-target="inicio">
+                    <span>🚀</span>
+                    <span class="nav-text">Inicio y Resumen</span>
+                    <span class="badge">01</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Fundamentos</div>
+                <a class="nav-item" data-target="conceptos">
+                    <span>🧠</span>
+                    <span class="nav-text">Conceptos Clave</span>
+                    <span class="badge">02</span>
+                </a>
+                <a class="nav-item" data-target="estructura">
+                    <span>📁</span>
+                    <span class="nav-text">Estructura de una Skill</span>
+                    <span class="badge">03</span>
+                </a>
+                <a class="nav-item" data-target="frontmatter">
+                    <span>🏷️</span>
+                    <span class="nav-text">Frontmatter y Metadata</span>
+                    <span class="badge">04</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Comportamiento</div>
+                <a class="nav-item" data-target="trigger">
+                    <span>🎯</span>
+                    <span class="nav-text">Discovery y Trigger</span>
+                    <span class="badge">05</span>
+                </a>
+                <a class="nav-item" data-target="progresiva">
+                    <span> unfolding</span>
+                    <span class="nav-text">Progressive Disclosure</span>
+                    <span class="badge">06</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Práctica</div>
+                <a class="nav-item" data-target="ciclo">
+                    <span>🔄</span>
+                    <span class="nav-text">Crear → Testear → Mantener</span>
+                    <span class="badge">07</span>
+                </a>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Demo Interactiva</div>
+                <a class="nav-item" data-target="demo">
+                    <span>🔬</span>
+                    <span class="nav-text">Skill Inspector</span>
+                    <span class="badge">WIZARD</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+            <button id="theme-toggle-btn" class="theme-toggle-btn">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Modo Oscuro</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <button id="mobile-toggle-btn" class="mobile-toggle" aria-label="Abrir menú">☰</button>
+            <div class="header-breadcrumbs">
+                <span>Manual Skills</span>
+                <span>/</span>
+                <span id="current-crumb" class="active-crumb">Inicio y Resumen</span>
+            </div>
+            <div class="header-actions">
+                <span class="header-tag">HTML5 / SKILL.md / Agent Skills</span>
+            </div>
+        </header>
+
+        <main class="content-body">
+
+            <!-- ================= SECCIÓN: INICIO ================= -->
+            <section id="inicio" class="doc-section active">
+                <div class="section-header">
+                    <span class="section-tag">Bienvenido</span>
+                    <h1 class="section-title">Manual y Guía de Agent Skills</h1>
+                    <p class="section-description">
+                        Una referencia completa, interactiva y estructurada para entender, crear y mantener Agent Skills (archivos <code>SKILL.md</code>) con tecnologías web nativas.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>🎯 Objetivo de este Manual</h2>
+                    <p>
+                        Una <strong>Agent Skill</strong> es un paquete de instrucciones y recursos que un agente de IA puede cargar bajo demanda para realizar una tarea específica. Este manual explica su anatomía, el frontmatter, el modelo de trigger y el ciclo de auditoría de wording — todo en una SPA 100% vanilla.
+                    </p>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <span class="card-icon">📁</span>
+                            <h3 class="card-title">Estructura</h3>
+                            <p class="card-desc"><code>SKILL.md</code> + <code>scripts/</code> + <code>assets/</code>; convenciones y frontmatter YAML.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🎯</span>
+                            <h3 class="card-title">Trigger Model</h3>
+                            <p class="card-desc">Discovery declarativo por <code>description</code> o invocación explícita <code>/name</code>; sombreado por precedencia.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon"> unfolding</span>
+                            <h3 class="card-title">Progressive Disclosure</h3>
+                            <p class="card-desc">Cargar pasos y assets solo cuando se necesitan, sin inflar el contexto inicial.</p>
+                        </div>
+                        <div class="card">
+                            <span class="card-icon">🔬</span>
+                            <h3 class="card-title">Skill Inspector</h3>
+                            <p class="card-desc">Demo que renderiza el frontmatter + cuerpo de un <code>SKILL.md</code> mock en vivo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout info">
+                    <div class="callout-icon">💡</div>
+                    <div class="callout-content">
+                        <h4>Sugerencia de navegación</h4>
+                        <p>Usa el menú lateral o la búsqueda en tiempo real. Marca cada capítulo como completado para medir tu avance. El progreso y el tema se guardan en tu navegador (localStorage).</p>
+                    </div>
+                </div>
+
+                <div class="callout warning">
+                    <div class="callout-icon">⚠️</div>
+                    <div class="callout-content">
+                        <h4>Aviso de seguridad</h4>
+                        <p>La demo «Skill Inspector» <strong>no ejecuta</strong> scripts de skills ni accede al sistema de ficheros; renderiza un <code>SKILL.md</code> embebido como string.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: CONCEPTOS ================= -->
+            <section id="conceptos" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 01</span>
+                    <h1 class="section-title">Conceptos Clave</h1>
+                    <p class="section-description">
+                        Skill, SKILL.md, progressive disclosure, trigger model, aislamiento.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. ¿Qué es una Skill?</h2>
+                    <p>Una <strong>skill</strong> es un módulo autocontenido que enseña a un agente <em>cómo</em> hacer algo. Se compone de un <code>SKILL.md</code> (instrucciones + metadata) y recursos opcionales (scripts ejecutables, assets de referencia). El agente la carga <strong>solo cuando la necesita</strong>, lo que evita saturar el contexto con instrucciones que no se van a usar.</p>
+
+                    <div class="skill-anatomy">
+                        <div class="skill-anatomy-block">
+                            <div class="skill-anatomy-icon">📝</div>
+                            <div class="skill-anatomy-label">SKILL.md</div>
+                            <div class="skill-anatomy-desc">Frontmatter + instrucciones Markdown.</div>
+                        </div>
+                        <div class="skill-anatomy-connector">├─</div>
+                        <div class="skill-anatomy-block">
+                            <div class="skill-anatomy-icon">⚙️</div>
+                            <div class="skill-anatomy-label">scripts/</div>
+                            <div class="skill-anatomy-desc">Scripts ejecutables referenciados en el cuerpo.</div>
+                        </div>
+                        <div class="skill-anatomy-connector">└─</div>
+                        <div class="skill-anatomy-block">
+                            <div class="skill-anatomy-icon">📦</div>
+                            <div class="skill-anatomy-label">assets/</div>
+                            <div class="skill-anatomy-desc">Plantillas, esquemas, ejemplos pesados.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Principios fundamentales</h2>
+                    <ul>
+                        <li><strong>Aislamiento</strong>: cada skill vive en su propia carpeta y se describe por sí misma.</li>
+                        <li><strong>Progressive disclosure</strong>: el <code>SKILL.md</code> cabe entero en el contexto; los assets grandes se cargan bajo demanda.</li>
+                        <li><strong>Trigger declarativo</strong>: la <code>description</code> del frontmatter dice al agente <em>cuándo</em> usar la skill.</li>
+                        <li><strong>Precedencia</strong>: si dos skills compiten, la de mayor precedencia (definida por el host) sombrea a la otra.</li>
+                    </ul>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Comprendes qué es una skill y sus principios?</span>
+                    <button class="completion-btn" data-section="conceptos">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: ESTRUCTURA ================= -->
+            <section id="estructura" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 02</span>
+                    <h1 class="section-title">Estructura de una Skill</h1>
+                    <p class="section-description">
+                        <code>SKILL.md</code> + <code>scripts/</code> + <code>assets/</code>; frontmatter YAML; convenciones.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Layout de directorios</h2>
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">Estructura de archivos</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>mi-skill/
+├── SKILL.md          # obligatorio: frontmatter + instrucciones
+├── scripts/
+│   └── run.sh        # opcional: scripts referenciados
+└── assets/
+    └── template.json # opcional: recursos pesados bajo demanda</code></pre>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Ejemplo mínimo de SKILL.md</h2>
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">Markdown + YAML frontmatter</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>---
+name: pdf-to-markdown
+description: Converts a PDF to clean Markdown. Use when the user asks to extract
+  text or restructure content from a PDF file.
+license: MIT
+---
+
+# PDF to Markdown
+
+## Steps
+1. Read the PDF with the `pdf-extract` script.
+2. Normalize headings, lists and tables.
+3. Return the result as Markdown.
+
+## Reference
+See `assets/format-rules.md` for edge cases.</code></pre>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Entiendes la estructura de archivos y el ejemplo mínimo?</span>
+                    <button class="completion-btn" data-section="estructura">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: FRONTMATTER ================= -->
+            <section id="frontmatter" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 03</span>
+                    <h1 class="section-title">Frontmatter y Metadata</h1>
+                    <p class="section-description">
+                        <code>name</code>, <code>description</code>, <code>license</code>, <code>allowed-tools</code>; validación y precedencia.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Campos del frontmatter</h2>
+                    <table style="width:100%; border-collapse: collapse; margin: 1rem 0; font-size:0.9rem;">
+                        <thead>
+                            <tr style="background-color: var(--bg-tertiary); text-align: left;">
+                                <th style="padding:0.7rem; border:1px solid var(--border-color);">Campo</th>
+                                <th style="padding:0.7rem; border:1px solid var(--border-color);">Requerido</th>
+                                <th style="padding:0.7rem; border:1px solid var(--border-color);">Propósito</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color); font-weight:600;"><code>name</code></td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Sí</td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Identificador de la skill (kebab-case).</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color); font-weight:600;"><code>description</code></td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Sí</td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Dice al agente <em>cuándo</em> usarla. Es el contrato de trigger.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color); font-weight:600;"><code>license</code></td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">No</td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Licencia SPDX (MIT, Apache-2.0...).</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color); font-weight:600;"><code>allowed-tools</code></td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">No</td>
+                                <td style="padding:0.7rem; border:1px solid var(--border-color);">Restringe las tools disponibles mientras la skill está activa.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-block">
+                    <div class="callout warning">
+                        <div class="callout-icon">⚠️</div>
+                        <div class="callout-content">
+                            <h4>Regla de la <code>description</code></h4>
+                            <p>Describe el <strong>qué</strong> y el <strong>cuándo</strong>, no el <em>cómo</em> (eso va en el cuerpo). Una mala descripción = trigger errático. Itera el wording con pruebas reales.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Sabrías escribir un frontmatter válido y describir su precedencia?</span>
+                    <button class="completion-btn" data-section="frontmatter">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: TRIGGER ================= -->
+            <section id="trigger" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 04</span>
+                    <h1 class="section-title">Discovery y Trigger</h1>
+                    <p class="section-description">
+                        Descripción declarativa, invocación <code>/name</code>, sombreado por precedencia.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Modelo de trigger</h2>
+                    <p>El agente descubre las skills disponibles y decide cuál cargar en runtime. Dos caminos:</p>
+                    <ul>
+                        <li><strong>Declarativo</strong>: el razonamiento del agente compara el mensaje del usuario contra las <code>description</code> de todas las skills y elige la pertinente.</li>
+                        <li><strong>Explícito</strong>: el usuario invoca <code>/nombre-de-la-skill</code>, que fuerza la carga sin ambiguity.</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Sombreado por precedencia</h2>
+                    <p>Si dos skills pueden matchear el mismo mensaje, el host resuelve por <strong>precedencia</strong>: la skill de mayor nivel (p. ej. workspace > usuario > plugin) sombrea a la de menor nivel. Esto permite sobrescribir skills empaquetadas sin editar el paquete original.</p>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Distingues entre trigger declarativo y explícito y entiendes el sombreado?</span>
+                    <button class="completion-btn" data-section="trigger">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: PROGRESIVA ================= -->
+            <section id="progresiva" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 05</span>
+                    <h1 class="section-title">Progressive Disclosure</h1>
+                    <p class="section-description">
+                        Cargar pasos/assets solo cuando se necesitan; no inflar el contexto inicial.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. La regla del contexto mínimo</h2>
+                    <p>El <code>SKILL.md</code> debe caber entero en el contexto del agente. Los assets pesados (plantillas largas, catálogos, esquemas JSON grandes) <strong>no</strong> se embeben en el cuerpo: se referencian y se cargan solo si la conversación los necesita.</p>
+                </div>
+
+                <div class="content-block">
+                    <h2>2. Patrón de referencia bajo demanda</h2>
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span class="code-lang">SKILL.md (fragmento)</span>
+                            <button class="copy-btn">📋 Copiar</button>
+                        </div>
+                        <pre><code>## Pasos
+1. Detecta el formato de entrada.
+2. Si hay tablas complejas, lee `assets/table-rules.md`
+   para aplicar las reglas de merge de celdas.
+3. Devuelve el Markdown resultante.</code></pre>
+                    </div>
+                    <p>Aquí <code>assets/table-rules.md</code> solo se carga si aparecen tablas complejas — el contexto inicial permanece ligero.</p>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Aplicarías progressive disclosure para mantener el contexto mínimo?</span>
+                    <button class="completion-btn" data-section="progresiva">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: CICLO ================= -->
+            <section id="ciclo" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Capítulo 06</span>
+                    <h1 class="section-title">Crear → Testear → Mantener</h1>
+                    <p class="section-description">
+                        Flujo de autoría, validación de frontmatter, iteración de wording.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <h2>1. Flujo de autoría</h2>
+                    <ul>
+                        <li><strong>Crear</strong>: escribe <code>SKILL.md</code> con frontmatter y cuerpo minimalista.</li>
+                        <li><strong>Validar</strong>: comprueba que <code>name</code> y <code>description</code> existen y son precisos.</li>
+                        <li><strong>Testear</strong>: lanza escenarios reales y observa si el agente la trigerea correctamente.</li>
+                        <li><strong>Iterar</strong>: ajusta el wording de <code>description</code> hasta que el trigger sea estable.</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <div class="callout success">
+                        <div class="callout-icon">✅</div>
+                        <div class="callout-content">
+                            <h4>Señal de que la skill está lista</h4>
+                            <p>Se trigerea de forma fiable en ≥ 90% de los escenarios previstos y <em>no</em> se trigerea en escenarios ajenos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="completion-box">
+                    <span>¿Conoces el ciclo de vida de autoría y mantenimiento de una skill?</span>
+                    <button class="completion-btn" data-section="ciclo">Marcar como Completado</button>
+                </div>
+            </section>
+
+            <!-- ================= SECCIÓN: DEMO ================= -->
+            <section id="demo" class="doc-section">
+                <div class="section-header">
+                    <span class="section-tag">Demo Interactiva</span>
+                    <h1 class="section-title">Skill Inspector</h1>
+                    <p class="section-description">
+                        Renderiza un <code>SKILL.md</code> mock (frontmatter + cuerpo) e inspecciona su metadata. Sin red ni dependencias.
+                    </p>
+                </div>
+
+                <div class="wizard-container">
+                    <div class="demo-controls">
+                        <label for="skill-selector" class="demo-label">Selecciona un SKILL.md de ejemplo:</label>
+                        <select id="skill-selector" class="demo-select">
+                            <option value="pdf">pdf-to-markdown</option>
+                            <option value="git">git-release-notes</option>
+                            <option value="csv">csv-summarizer</option>
+                        </select>
+                        <button id="load-skill-btn" class="btn btn-primary">🔍 Inspeccionar</button>
+                    </div>
+
+                    <div class="skill-render" id="skill-render" aria-live="polite">
+                        <p class="skill-render-empty">Pulsa «Inspeccionar» para renderizar el <code>SKILL.md</code> seleccionado.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</div>
+
+<!-- Main JS -->
+<script src="js/app.js"></script>
+</body>
+</html>
